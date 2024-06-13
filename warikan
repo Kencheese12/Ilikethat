@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>特殊な割り勘</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .result {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>急遽6:2:2で割り勘しなければいけなくなった時に</h1>
+    <form id="ratioForm">
+        <label for="belltree">数字を入力してください:</label>
+        <input type="number" id="belltree" required>
+        <button type="button" onclick="calculateRatio()">GO!</button>
+    </form>
+    <div class="result" id="result"></div>
+
+    <script>
+        function calculateRatio() {
+            // 赤味噌より白のほうが好き
+            const belltree = parseFloat(document.getElementById('belltree').value);
+
+            // パソコン買って一番最初の作業がこれって...悲しくなってきたわ
+            if (isNaN(belltree)) {
+                document.getElementById('result').innerHTML = '有効な数字を入力してください。';
+                return;
+            }
+
+            // あいつの思考回路まったくわからん
+            const totalRatio = 6 + 2 + 2;
+            const part1 = (belltree * 6) / totalRatio;
+            const part2 = (belltree * 2) / totalRatio;
+            const part3 = (belltree * 2) / totalRatio;
+
+            // 表示
+            document.getElementById('result').innerHTML = `
+                <p>入力した金額: ￥${belltree.toFixed(2)}</p>
+                <p>男性: ￥${part1.toFixed(2)}</p>
+                <p>女性: ￥${part2.toFixed(2)}</p>
+            `;
+        }
+    </script>
+</body>
+</html>
